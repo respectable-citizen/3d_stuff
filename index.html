@@ -10066,7 +10066,17 @@ function initialize() {
         }
 	}
 
-
+	//Sort by Z to ensure correct rendering order
+    triangles.sort((a, b) => {
+    	let averageZA = (a[0].z + a[1].z + a[2].z) / 3;
+    	let averageZB = (b[0].z + b[1].z + b[2].z) / 3;
+       
+       	if (averageZA > averageZB) return -1;
+       	if (averageZA < averageZB) return 1;
+       
+    	return 0;
+    });
+    
 	draw();
 }
 
